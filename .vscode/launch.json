@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AsterApplication<aster>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.aster.chat.aster.AsterApplication",
+            "projectName": "aster",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
