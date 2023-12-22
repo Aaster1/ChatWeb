@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 
 // TODO : deprecated 없애기 (version : before SpringSecurity 5.4 ⬇)
 // @EnableWebSecurity
@@ -26,6 +27,15 @@ public class SecurityConfig {
         http.httpBasic(basic -> basic.disable());
 
         // CSRF(Cross-Site Request Forgery) 공격 방어 기능 비활성화
+        http.cors(cors -> cors.configurationSource(req -> {
+            CorsConfiguration corsConfig = new CorsConfiguration();
+            corsConfig.setAllowCredentials(true);
+            corsConfig.addAllowedOriginPattern("*");
+            corsConfig.addAllowedHeader("*");
+            corsConfig.addAllowedMethod("*");
+            return corsConfig;
+        }));
+
         http.csrf(csrf -> csrf.disable());
 
         // 세션 관리 정책 설정: STATELESS로 설정하면 서버는 세션을 생성하지 않음
